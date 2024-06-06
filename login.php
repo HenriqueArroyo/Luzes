@@ -14,7 +14,7 @@
         echo "<p style='color:red'>{$_GET['msgErro']}</p>";
     }
     ?>
-    <form method="POST" action="autenticacaoCliente.php">
+    <form method="POST" action="autenticacao.php">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br>
 
