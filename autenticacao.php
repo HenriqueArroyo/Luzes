@@ -1,5 +1,5 @@
 <?php
-require_once 'conectaBD.php';
+require 'conectaBD.php';
 
 if (!empty($_POST['email']) && !empty($_POST['senha'])) {
     $email = $_POST['email'];

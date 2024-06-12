@@ -1,37 +1,66 @@
-body{ 
-margin: 0; 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+
 
 }
-nav {
-    background-color: #df2e2e;
-    padding: 20px;
+
+
+.row2 {   
+    position: relative;
+    left: 10vh;
+
+
 }
+
+.card {
+margin-top: 30px;
+    width: 350px;
+}
+
+.nav2 {
+    background-color: #181818;
+    display: flex;
+    justify-content: space-around;
+    height: 7px;
+}
+
+
 
 #logo {
     height: 50px;
 }
 
-.link {
-    display: flex;
-    justify-content: space-between;
-    width: 200px;
-    margin-left: auto;
+.nav-item {
+    margin-left: 80px;
 }
 
-.link a {
-    text-decoration: none;
-    color: #202020;
+.carousel  {   
+
+    border-radius: 20px;
+    margin-top: 20px;
+    height: 600px;
+} 
+
+.carousel img{
+    height: 600px;
+    border-radius: 20px;
+
 }
 
-.nav2 {
-    background-color: #181818;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
+.card-img-top {
+    margin-bottom: 5px; 
+    height: 100px; 
+    width: 100px;
 }
 
-.nav2 a {
-    color: #fff;
-    text-decoration: none;
+.navbar .nav-link {
+    color: #ffffff !important;
+    /* Cor do texto branca */
 }
+
+.navbar .nav-link:hover {
+    color: #ffcccc !important;
+    /* Cor do texto ao passar o mouse */
+} 
+

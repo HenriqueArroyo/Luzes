@@ -1,35 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?php
+include 'functions.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+// Your PHP code here.
 
-<body>
-    <nav>
-        <img id="logo" src="/img/SENAI-CAR-sem-fundo.png" alt="Logo">
-        <div class="link">
+// Home Page template below.
+?>
 
-            <a id="login" href="login.php">Entrar</a>
-            <a id="registrar" href="cadastro.php">Registrar</a>
+
+<?= template_header('LocEdu') ?>
+
+<div class="container">
+    <section>
+
+
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img id="carousel-img" src="img/Análise de dados dashboard empresa vermelho e roxo.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img id="carousel-img" src="img/1.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img id="carousel-img" src="img/2.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    </nav>
-    <div class="nav2">
-        <a href="cadastroFuncionario.php">Alugar</a>
-        <a href="#catalago">Catálago</a>
-        <a href="">Contato</a>
-        <a href="">Sobre</a>
-    </div>
 
-    <section >
-        
-               
-    <footer>
-    
-    </footer>
-</body>
-<script src="/js/script.js"></script>
-</html>
+    </section> 
+
+
+
+
+</div> 
+<?= template_footer() ?>

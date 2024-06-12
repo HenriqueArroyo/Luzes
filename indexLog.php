@@ -1,121 +1,106 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?php
+include 'functions.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+// Your PHP code here.
 
-<body>
-    <nav>
-        <img id="logo" src="/img/SENAI-CAR-sem-fundo.png" alt="Logo">
-        <div class="link">
+// Home Page template below.
+?>
 
-         
-        </div>
-    </nav>
-    <div class="nav2">
-        <a href="">Alugar</a>
-        <a href="">Catálago</a>
-        <a href="">Contato</a>
-        <a href="">Sobre</a>
-    </div>
 
+<?= template_headerLog('LocEdu') ?>
+
+<div class="container">
     <section>
-        <div class="slider">
-            <div class="slides">
 
-                <input type="radio" name="radio-btn" id="radio1">
-                <input type="radio" name="radio-btn" id="radio2">
-                <input type="radio" name="radio-btn" id="radio3">
-                <input type="radio" name="radio-btn" id="radio4">
 
-                <div class="slide first">
-                    <img src="/img/carousel1.png" alt="imagem 1">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img id="carousel-img" src="img/Análise de dados dashboard empresa vermelho e roxo.png" class="d-block w-100" alt="...">
                 </div>
-                <div class="slide ">
-                    <img src="/img/carousel2.png" alt="imagem 2">
+                <div class="carousel-item">
+                    <img id="carousel-img" src="img/1.png" class="d-block w-100" alt="...">
                 </div>
-                <div class="slide ">
-                    <img src="/img/carousel3.png" alt="imagem 3">
+                <div class="carousel-item">
+                    <img id="carousel-img" src="img/2.png" class="d-block w-100" alt="...">
                 </div>
-                <div class="slide">
-                    <img src="/img/carousel4.png" alt="imagem 4">
-                </div>
-
-                <div class="navigation-auto">
-                    <div class="auto-btn1"></div>
-                    <div class="auto-btn2"></div>
-                    <div class="auto-btn3"></div>
-                    <div class="auto-btn4"></div>
-                </div>
-
             </div>
-
-        <div class="manual-navigation">
-               <label for="radio1" class="manual-btn"></label>
-               <label for="radio2" class="manual-btn"></label>
-               <label for="radio3" class="manual-btn"></label>
-               <label for="radio4" class="manual-btn"></label>
-        </div>
-        </div>
-        <h1 id="titulo">Catálago de Carros</h1>
-        <div class="catalago">
-           
-
-
-    <a href="">    <div class="car1">
-           <img src="/img/honda-civic.webp"
-            alt="">
-            <h4>Honda Civic</h4>
-            <h6>R$ 1.000 a diária</h6>
-         </div></a> 
-          
-      <a href="">  <div class="car2">
-            <img src="/img/fiat-palio.webp"
-            alt="">
-            <h4>Fiat Palio</h4>
-            <h6>R$ 700 a diária</h6>
-          </div></a>  
-
-          
-       <a href=""> <div class="car3">
-            <img src="/img/ford-ecosport.webp"
-            alt="">
-            <h4>Ford Ecosport</h4>
-            <h6>R$ 800 a diária</h6>
-         </div></a> 
-        </div>
-        <div class="catalago">
-           <a href=""><div class="car4">
-            <img src="/img/honda-fit.webp"
-            alt="">
-            <h4>Honda Fit</h4>
-            <h6>R$ 800 a diária</h6>
-            </div></a> 
-  
-            
-          <a href=""><div class="car5">
-            <img src="/img/hyundai-hb20.webp"
-            alt="">
-            <h4>Hyundai HB20</h4>
-            <h6>R$1400 a diária</h6>
-           </div></a> 
-            
-          <a href=""> <div class="car6">
-            <img src="/img/toyota-corolla.webp"
-            alt="">
-            <h4>Toyota Corolla</h4>
-            <h6>R$ 950 a diária</h6>
-            </div></a> 
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
     </section>
-    <footer>
-    
-    </footer>
-</body>
-<script src="/js/script.js"></script>
-</html>
+
+    <div class="row2">
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/icon-fabricacao.svg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sala 1</h5>
+                        <p class="card-text">Presento do setor 1.</p>
+                        <a href="sala1.php" class="btn btn-outline-dark">Gerenciar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body"> 
+                    <img src="img/icon-tecnologia.svg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sala 2</h5>
+                        <p class="card-text">Presento do setor 1.</p>
+                        <a href="sala2.php" class="btn btn-outline-dark">Gerenciar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body"> 
+                    <img src="img/icon-administracao.svg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sala 3</h5>
+                        <p class="card-text">Presento do setor 1.</p>
+                        <a href="sala3.php" class="btn btn-outline-dark">Gerenciar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body"> 
+                    <img src="img/icon-eletronica.svg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sala 4</h5>
+                        <p class="card-text">Presento do setor 2.</p>
+                        <a href="sala4.php" class="btn btn-outline-dark">Gerenciar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body"> 
+                    <img src="img/icon-eletronica.svg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sala 5</h5>
+                        <p class="card-text">Presento do setor 2.</p>
+                        <a href="sala5.php" class="btn btn-outline-dark">Gerenciar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body"> 
+                    <img src="img/icon-eletronica.svg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sala 6</h5>
+                        <p class="card-text">Presento do setor 2.</p>
+                        <a href="sala6.php" class="btn btn-outline-dark">Gerenciar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?= template_footer($footer) ?>
+</div>

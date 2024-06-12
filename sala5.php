@@ -9,28 +9,22 @@
 <body>  
 
     <?php
-    require 'conectaBD.php';  
-
-     include 'functions.php';
+    require 'conectaBD.php';
 
     // Consulta para listar os patrimônios
-    $sql_patrimonio = "SELECT codigo, item, status FROM Patrimonio WHERE ID_sala = 1";
+    $sql_patrimonio = "SELECT codigo, item, status FROM Patrimonio WHERE ID_sala = 5";
     $patrimonio_stmt = $pdo->query($sql_patrimonio);
     $patrimonios = $patrimonio_stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Consulta para listar o estoque
-    $sql_estoque = "SELECT item, quantidade FROM Estoque WHERE ID_sala = 1";
+    $sql_estoque = "SELECT item, quantidade FROM Estoque WHERE ID_sala = 5";
     $estoque_stmt = $pdo->query($sql_estoque);
     $estoques = $estoque_stmt->fetchAll(PDO::FETCH_ASSOC);
-    ?> 
-
-<?= template_headerSala('LocEdu') ?>
-
+    ?>
 
 <h1> Bem vindo a SALA 01</h1>
 
-
-
+    
     <div class="container"> 
 
         <div class="table-container"> 
@@ -76,10 +70,6 @@
                 </tbody>
             </table>  
         </div>
-    </div> 
-
-    <?= template_footer() ?>
-
-</body>  
-
+    </div>
+</body>
 </html>
