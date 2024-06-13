@@ -42,7 +42,7 @@ include 'functions.php';
             <div class="col-sm-6 mb-3 mb-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <img src="img/icon-fabricacao.svg" class="card-img-top" alt="...">
+                        <img src="img/sala01.png" class="card-img-top" alt="...">
                         <h5 class="card-title">Sala 1</h5>
                         <p class="card-text">Presento do setor 1.</p>
                         <a href="sala1.php" class="btn btn-outline-dark">Gerenciar</a>
@@ -52,7 +52,7 @@ include 'functions.php';
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body"> 
-                    <img src="img/icon-tecnologia.svg" class="card-img-top" alt="...">
+                    <img src="img/sala02.png" class="card-img-top" alt="...">
                         <h5 class="card-title">Sala 2</h5>
                         <p class="card-text">Presento do setor 1.</p>
                         <a href="sala2.php" class="btn btn-outline-dark">Gerenciar</a>
@@ -62,7 +62,7 @@ include 'functions.php';
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body"> 
-                    <img src="img/icon-administracao.svg" class="card-img-top" alt="...">
+                    <img src="img/sala03.png" class="card-img-top" alt="...">
                         <h5 class="card-title">Sala 3</h5>
                         <p class="card-text">Presento do setor 1.</p>
                         <a href="sala3.php" class="btn btn-outline-dark">Gerenciar</a>
@@ -72,7 +72,7 @@ include 'functions.php';
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body"> 
-                    <img src="img/icon-eletronica.svg" class="card-img-top" alt="...">
+                    <img src="img/sala04.png" class="card-img-top" alt="...">
                         <h5 class="card-title">Sala 4</h5>
                         <p class="card-text">Presento do setor 2.</p>
                         <a href="sala4.php" class="btn btn-outline-dark">Gerenciar</a>
@@ -82,7 +82,7 @@ include 'functions.php';
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body"> 
-                    <img src="img/icon-eletronica.svg" class="card-img-top" alt="...">
+                    <img src="img/sala05.png" class="card-img-top" alt="...">
                         <h5 class="card-title">Sala 5</h5>
                         <p class="card-text">Presento do setor 2.</p>
                         <a href="sala5.php" class="btn btn-outline-dark">Gerenciar</a>
@@ -92,7 +92,7 @@ include 'functions.php';
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body"> 
-                    <img src="img/icon-eletronica.svg" class="card-img-top" alt="...">
+                    <img src="img/sala06.png" class="card-img-top" alt="...">
                         <h5 class="card-title">Sala 6</h5>
                         <p class="card-text">Presento do setor 2.</p>
                         <a href="sala6.php" class="btn btn-outline-dark">Gerenciar</a>
@@ -102,5 +102,6 @@ include 'functions.php';
         </div>
     </div>
 
-    <?= template_footer($footer) ?>
-</div>
+  
+</div>  
+<?= template_footer('log') ?>

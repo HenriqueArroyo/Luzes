@@ -11,10 +11,82 @@ table {
 
 }
 th, td {
-    border: 1px solid #ffffff;
+    border: 2px solid #000000;
     padding: 8px;
     text-align: left;
 }
 th {
-    background-color: #eb1f1f;
+    background-color:rgb(220, 53, 69);
+} 
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha em telas menores */
+    justify-content: space-between;
+    gap: 20px; /* Espaçamento entre os elementos */
+}
+
+.table-container {
+    width: 100%;
+    margin-right: 0; /* Remove o espaçamento entre as tabelas em telas menores */
+    margin-bottom: 20px; /* Espaçamento entre as tabelas em telas menores */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: rgb(220, 53, 69);
+}
+
+/* Media queries para diferentes tamanhos de tela */
+@media (min-width: 600px) {
+    .table-container {
+        width: 45%; /* Ajuste conforme necessário para telas médias */
+        margin-right: 20px; /* Espaçamento entre as tabelas */
+    }
+}
+
+@media (min-width: 900px) {
+    .table-container {
+        width: 45%; /* Ajuste conforme necessário para telas grandes */
+        margin-right: 20px; /* Espaçamento entre as tabelas */
+    }
+}
+
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-button,
+#delete-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #2c69db; /* Cor de fundo azul para o botão Editar */
+    color: #fff; /* Cor do texto branco para o botão Editar */
+    transition: background-color 0.3s ease;
+}
+
+#delete-button {
+    background-color: #dc3545; /* Cor de fundo vermelha para o botão Remover */
+}
+
+#edit-button:hover,
+#delete-button:hover {
+    background-color: #37393b; /* Cor de fundo mais escura ao passar o mouse */
 }

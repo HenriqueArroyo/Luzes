@@ -39,9 +39,5 @@ include 'functions.php';
         </div>
 
     </section>
-
-
-
-
 </div>
-<?= template_footer($f) ?>
+    <?= template_footer('normal') ?>

@@ -72,6 +72,8 @@ function template_headerLog($title)
         <meta charset="utf-8">
         <title><?=$title?></title>
         <link href="css/style.css" rel="stylesheet" type="text/css">
+                <link href="css/styleFooter.css" rel="stylesheet" type="text/css">
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
@@ -95,7 +97,11 @@ function template_headerLog($title)
                            <li class="nav-item active">
                             <a class="nav-link" href="cadastroPatrimonio.php">Novo Patrimonio <span class="sr-only">(current)</span></a>
                         </li>
+                           <li class="nav-item active">
+                            <a class="nav-link" href="index.php">Sair <span class="sr-only">(current)</span></a>
+                        </li>
                     </ul>
+
                 </div>
             </nav>
         </div>
@@ -116,8 +122,10 @@ function template_headerSala($title)
 <html>
     <head>
         <meta charset="utf-8">
-        <title><?=$title?></title>
+        <title><?=$title?></title> 
+        <link href="css/styleTabela.css" rel="stylesheet" type="text/css"> 
         <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/styleFooter.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>

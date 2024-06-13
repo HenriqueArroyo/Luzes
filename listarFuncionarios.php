@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Funcionários</title>
-    <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
 
-    th,
-    td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+<body>  
 
-    th {
-        background-color: #f2f2f2;
-    }
-    </style>
-</head>
+<?php
+include 'functions.php'; 
 
-<body>
-    <h1>Lista de Funcionários</h1>
+
+    ?> 
+
+<?= template_headerSala('Sala') ?> 
+
+<div class="container"> 
+        <div class="table-container"> 
+            <h1>Listagem de Funcionários</h1>
+            <link rel="stylesheet" href="css/styleTabela.css">
     <table>
         <thead>
             <tr>
@@ -36,6 +24,7 @@
                 <th>ID Sala</th>
             </tr>
         </thead>
+        
         <tbody>
             <?php
                 // URL da API que retorna os dados dos funcionários
@@ -71,8 +60,61 @@
                     echo '<tr><td colspan="5">Nenhum funcionário encontrado.</td></tr>';
                 }
             ?>
-        </tbody>
-    </table>
+        </tbody> 
+    </table>    
+    </div> 
+
+    <div class="table-container">
+    <h1>Lista de Responsaveis</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>ID Setor</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+    <?php
+                // URL da API que retorna os dados dos funcionários
+                $api_url = 'http://localhost/api/api_responsavel.php';
+                
+                // Inicializa a sessão cURL
+                $curl = curl_init($api_url);
+
+                // Configura a opção para retornar a resposta como string
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                // Executa a solicitação e obtém a resposta
+                $response = curl_exec($curl);
+
+                // Fecha a sessão cURL
+                curl_close($curl);
+
+                // Converte a resposta JSON em array
+                $responsaveis = json_decode($response, true);
+
+                // Verifica se a resposta contém dados
+                if (!empty($responsaveis)) {
+                    foreach ($responsaveis as $responsavel) {
+                        echo '<tr>';
+                        echo '<td>' . $responsavel['ID_responsavel'] . '</td>';
+                        echo '<td>' . $responsavel['NOME'] . '</td>';
+                        echo '<td>' . $responsavel['EMAIL'] . '</td>';
+                        echo '<td>' . $responsavel['ID_setor'] . '</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="5">Nenhum Responsavel encontrado.</td></tr>';
+                }
+            ?>
+     </tbody> 
+     </table> 
+     </div>
+     </div> 
 </body>
 
 </html>

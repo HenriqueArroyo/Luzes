@@ -1,52 +1,61 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala 01</title>
-   <link rel="stylesheet" href="css/styleTabela.css">
+    <title>Sala 04</title>
+    <link rel="stylesheet" href="css/styleTabela.css">
 </head>
 <body>  
 
     <?php
-    require 'conectaBD.php';
+    function fetchPatrimonios($id_sala) {
+        $url = "http://localhost/api/api_patrimonio.php?id_sala=" . $id_sala;
+        $response = file_get_contents($url);
+        return json_decode($response, true);
+    }
 
-    // Consulta para listar os patrimônios
-    $sql_patrimonio = "SELECT codigo, item, status FROM Patrimonio WHERE ID_sala = 4";
-    $patrimonio_stmt = $pdo->query($sql_patrimonio);
-    $patrimonios = $patrimonio_stmt->fetchAll(PDO::FETCH_ASSOC);
+    function fetchEstoque($id_sala) {
+        $url = "http://localhost/api/api_estoque.php?id_sala=" . $id_sala;
+        $response = file_get_contents($url);
+        return json_decode($response, true);
+    }
 
-    // Consulta para listar o estoque
-    $sql_estoque = "SELECT item, quantidade FROM Estoque WHERE ID_sala = 4";
-    $estoque_stmt = $pdo->query($sql_estoque);
-    $estoques = $estoque_stmt->fetchAll(PDO::FETCH_ASSOC);
-    ?>
+    $patrimonios = fetchPatrimonios(4);
+    $estoques = fetchEstoque(4);
+    include 'functions.php';
+    ?> 
+<?= template_headerSala('LocEdu') ?>
 
-<h1> Bem vindo a SALA 04</h1>
+    <h1>Bem vindo a SALA 04</h1>
 
-    
     <div class="container"> 
-
         <div class="table-container"> 
-
             <h1>Listagem de Patrimônios</h1>
+            <link rel="stylesheet" href="css/styleTabela.css">
             <table>
                 <thead>
                     <tr>
                         <th>Código</th>
                         <th>Item</th>
                         <th>Status</th>
-                        
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($patrimonios as $patrimonio): ?>
+                    <?php if ($patrimonios): ?>
+                        <?php foreach ($patrimonios as $patrimonio): ?>
+                            <tr>
+                                <td><?php echo $patrimonio['codigo']; ?></td>
+                                <td><?php echo $patrimonio['item']; ?></td>
+                                <td><?php echo $patrimonio['status']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?php echo $patrimonio['codigo']; ?></td>
-                            <td><?php echo $patrimonio['item']; ?></td>
-                            <td><?php echo $patrimonio['status']; ?></td>
+                            <td colspan="3">Nenhum patrimônio encontrado.</td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div> 
@@ -61,15 +70,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($estoques as $estoque): ?>
+                    <?php if ($estoques): ?>
+                        <?php foreach ($estoques as $estoque): ?>
+                            <tr>
+                                <td><?php echo $estoque['item']; ?></td>
+                                <td><?php echo $estoque['quantidade']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?php echo $estoque['item']; ?></td>
-                            <td><?php echo $estoque['quantidade']; ?></td>
+                            <td colspan="2">Nenhum estoque encontrado.</td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>  
         </div>
-    </div>
-</body>
+    </div> 
+
+</body>  
 </html>
