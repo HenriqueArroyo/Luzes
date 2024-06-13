@@ -1,29 +1,75 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    // Função para realizar uma requisição HTTP GET
+    function http_get($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    // URL da API do Funcionario e Responsavel (ajustar de acordo com seu ambiente)
+    $funcionario_api_url = 'http://localhost/api/api_funcionario.php?email=' . urlencode($email);
+    $responsavel_api_url = 'http://localhost/api/api_responsavel.php?email=' . urlencode($email);
+
+    // Realiza a requisição para API de Funcionario
+    $funcionario_data = http_get($funcionario_api_url);
+
+    // Se não encontrar funcionário, tenta buscar na API de Responsavel
+    if (empty($funcionario_data)) {
+        $responsavel_data = http_get($responsavel_api_url);
+        if (!empty($responsavel_data) && password_verify($senha, $responsavel_data['SENHA'])) {
+            $_SESSION['user'] = [
+                'type' => 'responsavel',
+                'data' => $responsavel_data
+            ];
+            header('Location: dashboard.php');
+            exit;
+        }
+    } else {
+        // Encontrou funcionário, verifica senha
+        if (password_verify($senha, $funcionario_data['SENHA'])) {
+            $_SESSION['user'] = [
+                'type' => 'funcionario',
+                'data' => $funcionario_data
+            ];
+            header('Location: dashboard.php');
+            exit;
+        }
+    }
+
+    $error = "Email ou senha incorretos!";
+}
+?>
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/styleCadastro.css">
 </head>
+
 <body>
-    
-    <h1>Login</h1>
-    <?php
-    if(isset($_GET['msgSucesso'])) {
-        echo "<p style='color:green'>{$_GET['msgSucesso']}</p>";
-    } elseif(isset($_GET['msgErro'])) {
-        echo "<p style='color:red'>{$_GET['msgErro']}</p>";
-    }
-    ?>
-    <form method="POST" action="autenticacao.php">
+    <h2>Login</h2>
+    <?php if (isset($error)): ?>
+    <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
+    <form method="POST" action="">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-
+        <input type="email" name="email" required>
+        <br>
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required><br>
-
-        <input type="submit" value="Entrar">
+        <input type="password" name="senha" required>
+        <br>
+        <button type="submit">Login</button>
     </form>
 </body>
+
 </html>

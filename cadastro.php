@@ -1,73 +1,82 @@
 <?php
-require 'conectaBD.php';
-// Configurações do banco de dados
-$endereco = 'localhost';
-$banco = 'luzes';
-$usuario = 'postgres';
-$senha = 'postgres';
+session_start();
 
-try {
-    // Conexão com o banco de dados
-    $pdo = new PDO(
-        "pgsql:host=$endereco;port=5432;dbname=$banco",
-        $usuario,
-        $senha,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
+    // Função para realizar uma requisição HTTP GET
+    function http_get($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($response, true);
+    }
 
+    // URL da API do Funcionario e Responsavel (ajustar de acordo com seu ambiente)
+    $funcionario_api_url = 'http://localhost/api/api_funcionario.php?email=' . urlencode($email);
+    $responsavel_api_url = 'http://localhost/api/api_responsavel.php?email=' . urlencode($email);
 
-} catch (PDOException $e) {
-    echo "Falha ao conectar ao banco de dados. <br/>";
-    die($e->getMessage());
+    // Realiza a requisição para API de Funcionario
+    $funcionario_data = http_get($funcionario_api_url);
+
+    // Se não encontrar funcionário, tenta buscar na API de Responsavel
+    if (empty($funcionario_data)) {
+        $responsavel_data = http_get($responsavel_api_url);
+        if (!empty($responsavel_data) && isset($responsavel_data['SENHA']) && password_verify($senha, $responsavel_data['SENHA'])) {
+            $_SESSION['user'] = [
+                'type' => 'responsavel',
+                'data' => $responsavel_data
+            ];
+            header('Location: dashboard.php');
+            exit;
+        } else {
+            $error = "Email ou senha incorretos!";
+        }
+    } else {
+        // Encontrou funcionário, verifica senha
+        if (isset($funcionario_data['SENHA']) && password_verify($senha, $funcionario_data['SENHA'])) {
+            $_SESSION['user'] = [
+                'type' => 'funcionario',
+                'data' => $funcionario_data
+            ];
+            header('Location: indexLog.php');
+            exit;
+        } else {
+            $error = "Email ou senha incorretos!";
+        }
+    }
+
+    // Se chegou aqui, login falhou
+    if (!isset($error)) {
+        $error = "Email ou senha incorretos!";
+    }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="/css/styleCadastro.css">
-
-    <title>Cadastro de Funcionario</title>
+    <title>Login</title>
 </head>
+
 <body>
-    <h1>Cadastro de Funcionario</h1>
-    <form method="POST" action="processa_cadastro.php">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br>
-
+    <h2>Login</h2>
+    <?php if (isset($error)): ?>
+    <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
+    <form method="POST" action="">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone"><br>
-
+        <input type="email" name="email" required>
+        <br>
         <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha"> 
-
-        <label class="input-group-text" for="inputGroupSelectResponsavel">Responsável:</label>
-<select class="form-select" id="id_responsavel" name="id_responsavel">
-    <option selected>Escolha o Responsavel</option>
-    <option value="1">Henrique Arroyo</option>
-    <option value="2">Eduardo Ananias</option>
-    <option value="3">Leonardo Vitalino</option>
-</select>
-
-        <label class="input-group-text" for="inputGroupSelectSala">Sala:</label>
-<select class="form-select" id="id_sala" name="id_sala">
-    <option selected>Escolha a Sala</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-</select>
-
-
-        <input type="submit" value="Cadastrar">
+        <input type="password" name="senha" required>
+        <br>
+        <button type="submit">Login</button>
     </form>
 </body>
+
 </html>
